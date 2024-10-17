@@ -30,17 +30,29 @@
             'purchaseUrl' => 'http://example.com'
         ],
     ];
+    function filterByAuthor($books, $author): array
+    {
+        $filteredBooks = [];
+        foreach ($books as $book) {
+            if ($author == $book['author']) {
+                $filteredBooks[] = $book;
+            }
+        }
+        return $filteredBooks;
+    }
     ?>
     <!-- <?= $book['name'] ?> imprime como un echo -->
     <ul>
-
         <?php foreach ($books as $book): ?>
-            <?= $book['name'] ?>
+            <?php if ($book['author'] === 'Andy Weir'): ?>
+                <li>
+                    <a href="<?= $book['purchaseUrl'] ?>">
+                        <?= $book['name'] ?>
+                    </a>
+                </li>
+            <?php endif; ?>
+
         <?php endforeach; ?>
-    </ul>
-
-
-
     </ul>
 </body>
 
