@@ -34,7 +34,7 @@
     {
         $filteredBooks = [];
         foreach ($books as $book) {
-            if ($author == $book['author']) {
+            if ($author === $book['author']) {
                 $filteredBooks[] = $book;
             }
         }
@@ -44,15 +44,14 @@
     <!-- <?= $book['name'] ?> imprime como un echo -->
     <!-- Información en el Git -->
     <ul>
-        <?php foreach ($books as $book): ?>
+        <?php foreach (filterByAuthor($books,'Philip K.Dick') as $book): ?>
 
-            <?php if ($book['author'] === 'Andy Weir'): ?>
                 <li>
                     <a href="<?= $book['purchaseUrl'] ?>">
                         <?= $book['name'] ?>
                     </a>
                 </li>
-            <?php endif; ?>
+        
 
         <?php endforeach; ?>
     </ul>
