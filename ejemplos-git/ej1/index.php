@@ -30,29 +30,36 @@
             'purchaseUrl' => 'http://example.com'
         ],
     ];
-   $filterByAuthor = function($books, $author): array
+
+    function filter($items, $fn): array
     {
-        $filteredBooks = [];
-        foreach ($books as $book) {
-            if ($author === $book['author']) {
-                $filteredBooks[] = $book;
+        $filteredItems = [];
+        foreach ($items as $item) {
+            if ($fn($items)) {
+                $filteredItems[] = $item;
             }
         }
-        return $filteredBooks;
+        return $filteredItems;
     };
-    $filteredBooks=$filterByAuthor($books, $author);
+    //$filteredBooks = $filter($books, 'releaseYear',1968);
+    /*$filteredBooks = filter($books, function ($book): bool {
+        return $book['releaseYear'] > 2000;
+    });++*/
+    $filteredBooks=array_filter($books, function ($book): bool {
+        return $book['releaseYear'] > 2000;
+    });
     ?>
     <!-- <?= $book['name'] ?> imprime como un echo -->
     <!-- Información en el Git -->
     <ul>
         <?php foreach ($filteredBooks  as $book): ?>
 
-                <li>
-                    <a href="<?= $book['purchaseUrl'] ?>">
-                        <?= $book['name'] ?>
-                    </a>
-                </li>
-        
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name'] ?>
+                </a>
+            </li>
+
 
         <?php endforeach; ?>
     </ul>
