@@ -30,7 +30,7 @@
             'purchaseUrl' => 'http://example.com'
         ],
     ];
-    function filterByAuthor($books, $author): array
+   $filterByAuthor = function($books, $author): array
     {
         $filteredBooks = [];
         foreach ($books as $book) {
@@ -39,12 +39,13 @@
             }
         }
         return $filteredBooks;
-    }
+    };
+    $filteredBooks=$filterByAuthor($books, $author);
     ?>
     <!-- <?= $book['name'] ?> imprime como un echo -->
     <!-- Información en el Git -->
     <ul>
-        <?php foreach (filterByAuthor($books,'Philip K.Dick') as $book): ?>
+        <?php foreach ($filteredBooks  as $book): ?>
 
                 <li>
                     <a href="<?= $book['purchaseUrl'] ?>">
