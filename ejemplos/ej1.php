@@ -27,6 +27,7 @@
       $var4= true;
       echo "<p>Var4 es de tipo ". gettype(value: $var4) ."</p>";
       echo "<p>Var1 + Var2 = ". $var1 + (integer)$var2 ."</p>";
+
       ?>
     
 </body>
